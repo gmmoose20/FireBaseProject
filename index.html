@@ -24,20 +24,20 @@
       label {
         display: inline-block;
         width: 200px;
-        font-size: 24px;
+        font-size: 1.75rem;
         color: #fff;
       }
 
       input {
-        width: 50%;
-        font-size: 32px;
+        width: 20rem;
+        font-size: 1.45rem;
         border-radius: 20px;
         text-align: center;
       }
 
       button {
         padding: 15px 25px;
-        font-size: 24px;
+        font-size: 1.5rem;
         text-align: center;
         cursor: pointer;
         outline: none;
@@ -61,9 +61,9 @@
   </head>
   <body>
     <label for="">Name</label>
-    <input type="text" id="Namebox" placeholder="Pangalan mo dito..." />
+    <input type="text" id="Namebox" placeholder="Pangalan mo here..." />
     <br />
-    <label for="">Date of Birth:</label>
+    <label for="">Date of Birth</label>
     <input type="date" id="DobBox" />
 
     <br />
@@ -112,7 +112,9 @@
           DateOfBirth: dob,
         })
           .then(() => {
+            savebtn.innerText = "Done :)";
             alert("data stored successfully");
+            savebtn.disabled = true;
           })
           .catch((error) => {
             alert("Unsuccessful, error" + error);
