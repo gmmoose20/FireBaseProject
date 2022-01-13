@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Birthday Details</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        text-align: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      label {
+        display: inline-block;
+        width: 200px;
+        font-size: 24px;
+      }
+
+      input {
+        width: 50%;
+        font-size: 32px;
+        border-radius: 20px;
+        text-align: center;
+      }
+
+      button {
+        border: none;
+        padding: 30px;
+        font-size: 24px;
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="">Name</label>
+    <input type="text" id="Namebox" />
+    <br />
+    <label for="">Date of Birth:</label>
+    <input type="date" id="DobBox" />
+
+    <br />
+    <button id="submit">SUBMIT</button>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBahC7FN4jldy9ZEnNQ-GhZYVmrPX7UMmQ",
+        authDomain: "birthdayapp-28e2f.firebaseapp.com",
+        projectId: "birthdayapp-28e2f",
+        storageBucket: "birthdayapp-28e2f.appspot.com",
+        messagingSenderId: "1109275012",
+        appId: "1:1109275012:web:7f8e3e73d1ed7ebc8fadd1",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      import {
+        getDatabase,
+        ref,
+        set,
+      } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js";
+
+      const db = getDatabase();
+
+      // References
+      // let namebox = document.getElementById("Namebox");
+      // let dob = document.getElementById("DobBox");
+
+      const savebtn = document.getElementById("submit");
+
+      // Save Data
+      function SaveData() {
+        let namebox = document.getElementById("Namebox").value;
+        let dob = document.getElementById("DobBox").value;
+
+        set(ref(db, "CousinsBday/" + namebox), {
+          NameOfCouz: namebox,
+          DateOfBirth: dob,
+        })
+          .then(() => {
+            alert("data stored successfully");
+          })
+          .catch((error) => {
+            alert("Unsuccessful, error" + error);
+          });
+      }
+
+      // Assignt Events to Buttons
+      savebtn.addEventListener("click", SaveData);
+    </script>
+  </body>
+</html>
